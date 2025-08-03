@@ -6,15 +6,26 @@
 @tailwind utilities;
 @tailwind variants;
 
+@import url("https://use.typekit.net/yaf1nnk.css");
+
+@font-face {
+  font-family: 'absans';
+  src: url('/fonts/Absans-Regular.woff2') format('woff2'),
+    url('/fonts/Absans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Manrope", sans-serif;
   font-display: swap;
   height: 100vh;
-  @apply bg-ashy;
+  @apply bg-fwhite font-stevie;
 }
 
 h1,

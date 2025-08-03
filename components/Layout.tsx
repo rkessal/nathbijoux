@@ -21,8 +21,8 @@ const Layout: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="relative bg-ashy overflow-hidden">
-        <div className="relative pt-5 pb-10 px-5 lg:px-0 lg:pb-16 max-w-screen-lg mx-auto">
+      <div className="relative overflow-hidden bg-fwhite">
+        <div className="relative max-w-screen-lg px-5 pt-5 pb-10 mx-auto lg:px-0 lg:pb-16">
           <Header lang={lang} countryCode={countryCode} />
         </div>
 

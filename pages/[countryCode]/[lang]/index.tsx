@@ -37,7 +37,7 @@ const HomePage: NextPage<Props> = ({ lang, countries, country, taxonomies, build
       countryCode={countryCode}
       countries={countries}
     >
-      <Hero lang={lang} />
+      <Hero />
       <Taxonomies taxonomies={taxonomies} />
     </Page>
   );
