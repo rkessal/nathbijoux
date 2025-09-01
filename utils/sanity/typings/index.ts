@@ -10,10 +10,11 @@ export interface SanityTaxonomy extends Omit<Taxonomy, "name" | "taxons"> {
   taxons: SanityTaxon[];
 }
 
-export interface SanityTaxon extends Omit<Taxon, "name" | "products"> {
+export interface SanityTaxon extends Omit<Taxon, "name" | "products" | "slug"> {
   name: Record<string, string>;
   label: Record<string, string>;
   products: SanityProduct[];
+  slug: Record<string, any>;
 }
 
 export interface SanityProduct extends Omit<Product, "name" | "description" | "slug" | "variants"> {

@@ -55,6 +55,7 @@ const parsingProduct = (
 const parsingTaxon = (taxons: SanityTaxon[], lang = "en_us"): Taxon[] => {
   return taxons.map((taxon) => {
     const localization = {
+      slug: taxon?.slug[lang]?.current,
       name: taxon?.name[lang],
       label: taxon?.label[lang],
       products: taxon?.products ? (parsingProduct(taxon.products, lang) as Product[]) : []
@@ -107,6 +108,7 @@ const getAllTaxonomies = async (catalogId: string, locale = "en-US") => {
       'taxons': taxons[]->{
         label,
         name,
+        slug,
         'products': products[]->{
           name,
           description,
