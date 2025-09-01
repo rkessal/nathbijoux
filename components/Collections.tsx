@@ -8,14 +8,14 @@ type Props = {
 };
 
 const imageMap: Record<string, string> = {
-  "colliers": "/categories/collier.jpg",
-  "boucles-d-oreilles": "/categories/boucle-doreille.jpg",
-  "bracelets": "/categories/bracelet.jpg",
-  "bagues": "/categories/bague.jpg",
-  "mineraux": "/categories/mineraux.jpg",
-  "pierres-roulees": "/categories/pierre-roulee.jpg",
-  "purification-et-rechargement": "/categories/purification-rechargement.jpg",
-  "roses": "/categories/roses.jpg"
+  "colliers": "/categories/collier.webp",
+  "boucles-d-oreilles": "/categories/boucle-doreille.webp",
+  "bracelets": "/categories/bracelet.webp",
+  "bagues": "/categories/bague.webp",
+  "mineraux": "/categories/mineraux.webp",
+  "pierres-roulees": "/categories/pierre-roulee.webp",
+  "purification-et-rechargement": "/categories/purification-rechargement.webp",
+  "roses": "/categories/roses.webp"
 };
 
 const Categories = ({ categories, countryCode }: Props) => {
