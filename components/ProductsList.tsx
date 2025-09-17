@@ -28,7 +28,7 @@ const ProductsList = ({ products }: Props) => {
                 passHref
               >
                 <div className="flex flex-col h-full rounded-lg md:p-3">
-                  {img && (
+                    {img &&
                     <Image
                       className="object-contain"
                       src={`${img}`}
@@ -36,7 +36,7 @@ const ProductsList = ({ products }: Props) => {
                       width={200}
                       height={50}
                     />
-                  )}
+                    }
                   <h3 className="h-full space-y-1 text-base font-medium leading-6">{name}</h3>
                   <div className="mt-5 justify-self-end">
                     <ul className="flex items-center justify-between space-x-1">

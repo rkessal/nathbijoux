@@ -36,14 +36,13 @@ const HomePage: NextPage<Props> = ({ lang, countries, country, taxonomies, build
   if (taxonomies) {
     news = taxonomies.find((taxonomy) => taxonomy.name === "Nouveautés");
     categories = taxonomies
-      .find((taxonomy) => taxonomy.name === "Catégorie EMEA")
-      ?.taxons.filter((_, index) => index > 0);
+    .find((taxonomy) => taxonomy.name === "Catégorie EMEA")?.taxons
+    .filter((_, index) => index > 0);
   }
 
-  const techniquesList = [
+    const techniquesList = [
     {
-      title: "Purification",
-      list: [
+      title: "Purification", list: [
         {
           title: "Le bol tibetin",
           description: "Disposez votre pierre dans le bol et faites le chanter quelques instants."
@@ -54,23 +53,19 @@ const HomePage: NextPage<Props> = ({ lang, countries, country, taxonomies, build
         },
         {
           title: "L’eau",
-          description:
-            "Disposez vos minéraux dans un bol d’eau pendants plusieurs heures ou laissez couler l’eau pendant quelques minutes."
+          description: "Disposez vos minéraux dans un bol d’eau pendants plusieurs heures ou laissez couler l’eau pendant quelques minutes."
         },
         {
           title: "Le palo santo",
-          description:
-            "Faites brûler un bâton de palo santo et passez la fumée autour de vos minéraux pendant quelques instants afin de les purifier."
+          description: "Faites brûler un bâton de palo santo et passez la fumée autour de vos minéraux pendant quelques instants afin de les purifier."
         }
       ]
     },
     {
-      title: "Rechargement",
-      list: [
+      title: "Rechargement", list: [
         {
           title: "Le soleil et la lune",
-          description:
-            "Disposez vos pierres en plein soleil ou sous une lune éclatante quelques heures pour les recharger en énergie."
+          description: "Disposez vos pierres en plein soleil ou sous une lune éclatante quelques heures pour les recharger en énergie."
         },
         {
           title: "La fleur de vie",
@@ -91,9 +86,11 @@ const HomePage: NextPage<Props> = ({ lang, countries, country, taxonomies, build
       countries={countries}
     >
       <Hero lang={lang} countryCode={countryCode} />
-      {news && <News marketId={clMarketId} countryCode={countryCode} collection={news} />}
+      {
+        news && <News marketId={clMarketId} countryCode={countryCode} collection={news} />
+      }
       {categories && <Categories categories={categories} countryCode={countryCode} />}
-      <FullScreenMessage text="Découvrez les techniques essentielles de rechargement et de purification, des rituels indispensables pour préserver l'énergie et la vitalité de vos bijoux et pierres précieuses" />
+       <FullScreenMessage text="Découvrez les techniques essentielles de rechargement et de purification, des rituels indispensables pour préserver l'énergie et la vitalité de vos bijoux et pierres précieuses" />
       <div className="flex flex-col gap-y-20">
         {techniquesList.map((technique) => (
           <Techniques key={technique.title} title={technique.title} list={technique.list} />
@@ -101,14 +98,7 @@ const HomePage: NextPage<Props> = ({ lang, countries, country, taxonomies, build
       </div>
       <FullScreenMessage text="Nous savons que vous pouvez avoir des interrogations, et nous avons les réponses aux questions les plus courantes pour vous accompagner en toute clarté." />
       <FrequentlyAskedQuestions />
-      <FullScreenMessage
-        text="Prêt à accueillir la magie des pierres dans votre vie ? Découvrez nos pièces d’exception dès maintenant."
-        CTA={{
-          label: "Découvrez nos bijoux",
-          href: `${countryCode}/${lang}/store`,
-          image: "/home/home-cta-image.webp"
-        }}
-      />
+      <FullScreenMessage text="Prêt à accueillir la magie des pierres dans votre vie ? Découvrez nos pièces d’exception dès maintenant." CTA={{ label: "Découvrez nos bijoux", href: `${countryCode}/${lang}/store`, image: "/home/home-cta-image.webp" }} />
     </Page>
   );
 };

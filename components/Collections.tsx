@@ -8,14 +8,14 @@ type Props = {
 };
 
 const imageMap: Record<string, string> = {
-  colliers: "/categories/collier.webp",
+  "colliers": "/categories/collier.webp",
   "boucles-d-oreilles": "/categories/boucle-doreille.webp",
-  bracelets: "/categories/bracelet.webp",
-  bagues: "/categories/bague.webp",
-  mineraux: "/categories/mineraux.webp",
+  "bracelets": "/categories/bracelet.webp",
+  "bagues": "/categories/bague.webp",
+  "mineraux": "/categories/mineraux.webp",
   "pierres-roulees": "/categories/pierre-roulee.webp",
   "purification-et-rechargement": "/categories/purification-rechargement.webp",
-  roses: "/categories/roses.webp"
+  "roses": "/categories/roses.webp"
 };
 
 const Categories = ({ categories, countryCode }: Props) => {
@@ -25,12 +25,7 @@ const Categories = ({ categories, countryCode }: Props) => {
 
       <ul className="flex flex-col gap-y-60">
         {categories.map((category) => (
-          <CategoryCard
-            imageUrl={imageMap[category.slug]}
-            key={category.name}
-            category={category}
-            countryCode={countryCode}
-          />
+          <CategoryCard imageUrl={imageMap[category.slug]} key={category.name} category={category} countryCode={countryCode} />
         ))}
       </ul>
     </section>

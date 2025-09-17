@@ -85,17 +85,17 @@ const ProductPage: React.FC<Props> = ({ lang, country, countries, buildLanguages
       <div className="container flex flex-row max-w-screen-lg py-10 mx-auto lg:py-16">
         <div className="flex flex-wrap items-start px-5 sm:flex-nowrap sm:space-x-5 lg:px-0">
           <div className="flex flex-col w-full pb-5 lg:pb-0">
-            {product.images &&
-              product.images.map((img) => (
-                <Image
-                  key={img.url}
-                  alt={product.name}
-                  className="object-center w-full"
-                  src={img.url}
-                  width={500}
-                  height={500}
-                />
-              ))}
+            { product.images && product.images.map(img => (
+            <Image
+            key={img.url}
+              alt={product.name}
+              className="object-center w-full"
+              src={img.url}
+              width={500}
+              height={500}
+            />
+            )
+            )}
           </div>
           <div className="sticky w-full top-10">
             <h2 className="text-sm tracking-widest text-gray-500 title-font">BRAND</h2>
@@ -169,7 +169,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   const countryCode = params?.countryCode as string;
   const countries = await sanityApi.getAllCountries(lang);
   const country = countries.find((country: Country) => country.code.toLowerCase() === countryCode);
-  const product = await sanityApi.getProduct(slug);
+  const product = await sanityApi.getProduct(slug, lang);
   const buildLanguages = _.compact(
     process.env.BUILD_LANGUAGES?.split(",").map((l) => {
       const country = countries.find((country: Country) => country.code === parseLanguageCode(l));
