@@ -169,7 +169,7 @@ export const getStaticProps: GetStaticProps = async ({ params }: any) => {
   const countryCode = params?.countryCode as string;
   const countries = await sanityApi.getAllCountries(lang);
   const country = countries.find((country: Country) => country.code.toLowerCase() === countryCode);
-  const product = await sanityApi.getProduct(slug, lang);
+  const product = await sanityApi.getProduct(slug);
   const buildLanguages = _.compact(
     process.env.BUILD_LANGUAGES?.split(",").map((l) => {
       const country = countries.find((country: Country) => country.code === parseLanguageCode(l));
