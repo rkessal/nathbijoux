@@ -54,6 +54,10 @@ const HomePage: NextPage<Props> = ({ lang, countries, country, taxonomies, build
         {
           title: "L’eau",
           description: "Disposez vos minéraux dans un bol d’eau pendants plusieurs heures ou laissez couler l’eau pendant quelques minutes."
+        },
+        {
+          title: "Le palo santo",
+          description: "Faites brûler un bâton de palo santo et passez la fumée autour de vos minéraux pendant quelques instants afin de les purifier."
         }
       ]
     },
@@ -81,7 +85,7 @@ const HomePage: NextPage<Props> = ({ lang, countries, country, taxonomies, build
       countryCode={countryCode}
       countries={countries}
     >
-      <Hero />
+      <Hero lang={lang} countryCode={countryCode} />
       {
         news && <News marketId={clMarketId} countryCode={countryCode} collection={news} />
       }
@@ -94,7 +98,7 @@ const HomePage: NextPage<Props> = ({ lang, countries, country, taxonomies, build
       </div>
       <FullScreenMessage text="Nous savons que vous pouvez avoir des interrogations, et nous avons les réponses aux questions les plus courantes pour vous accompagner en toute clarté." />
       <FrequentlyAskedQuestions />
-      <FullScreenMessage text="Prêt à accueillir la magie des pierres dans votre vie ? Découvrez nos pièces d’exception dès maintenant." CTA={{ label: "Découvrez nos bijoux", href: "/store", image: "/home/home-cta-image.png" }} />
+      <FullScreenMessage text="Prêt à accueillir la magie des pierres dans votre vie ? Découvrez nos pièces d’exception dès maintenant." CTA={{ label: "Découvrez nos bijoux", href: `${countryCode}/${lang}/store`, image: "/home/home-cta-image.webp" }} />
     </Page>
   );
 };

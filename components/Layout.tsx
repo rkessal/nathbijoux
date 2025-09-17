@@ -20,17 +20,11 @@ const Layout: React.FC<Props> = ({
   countries = []
 }) => {
   return (
-    <>
-      <div className="relative overflow-hidden bg-fwhite">
-        <div className="relative max-w-screen-lg px-5 pt-5 pb-10 mx-auto lg:px-0 lg:pb-16">
-          <Header lang={lang} countryCode={countryCode} />
-        </div>
-
-        <main>{children}</main>
-
-        <Footer lang={lang} countries={countries} buildLanguages={buildLanguages} />
-      </div>
-    </>
+    <div className="relative w-full bg-fwhite">
+      <Header lang={lang} countryCode={countryCode} />
+      <main>{children}</main>
+      <Footer lang={lang} countries={countries} buildLanguages={buildLanguages} />
+    </div>
   );
 };
 

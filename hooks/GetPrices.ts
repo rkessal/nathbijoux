@@ -40,38 +40,19 @@ const fetchPrices = async () => {
       accessToken: token
     });
 
-    const skusList = await cl.skus.list({
-      filters: {
-        code_in: skus.join(",")
-      }
-    });
-
-    if (!skusList.length) {
-      console.warn("No SKUs found matching the provided codes");
-      setPrices({});
-      return;
-    }
-
-    const skuMap = skusList.reduce((acc, sku) => {
-      acc[sku.code] = sku.id;
-      return acc;
-    }, {} as { [code: string]: string });
-
-    const skuIds = Object.values(skuMap);
-
     const pricesList = await cl.prices.list({
       filters: {
-        sku_id_in: skuIds.join(",")
+        sku_code_in: skus.join(",")
       }
     });
 
     const pricesData: PriceData = {};
-    skusList.forEach(sku => {
-      const skuPrices = pricesList.filter(price => price.sku_code === sku.code);
-      pricesData[sku.code] = skuPrices;
+    skus.forEach(sku => {
+      const skuPrices = pricesList.filter(price => price.sku_code === sku);
+      pricesData[sku] = skuPrices;
 
       if (skuPrices.length === 0) {
-        console.warn(`No prices found for SKU: ${sku.code}`);
+        console.warn(`No prices found for SKU: ${sku}`);
       }
     });
 
@@ -85,7 +66,7 @@ const fetchPrices = async () => {
 };
 
     fetchPrices();
-  }, [skus, token, enabled, slug]);
+  }, [skus, token, enabled]);
 
   return { prices, loading, error };
 };

@@ -100,7 +100,7 @@ const PreviewPrice = ({ price, loading }: { price: any; loading?: boolean }) => 
 
   return (
     <div className="flex items-center gap-x-2">
-      <span className="font-semibold text-ui-fg-base">
+      <span>
         {price.formatted_amount}
       </span>
       {price.compare_at_formatted_amount && (

@@ -98,7 +98,7 @@ const locale: Locale = {
     startShopping: "Commencer à magasiner",
     learnMore: "Apprendre encore plus",
     continueShopping: "Continuer vos achats",
-    shoppingBag: "Sac de courses",
+    shoppingBag: "Panier",
     days: "jours",
     freeOver: "libre sur",
     language: "langue",

@@ -15,7 +15,7 @@ const FullScreenMessage = (props: Props) => {
           className="z-10"
           href="/shop"
         >
-          <button className="bg-light p-[20px] text-blue">
+          <button className="bg-fwhite p-[20px] text-blue">
             Découvrir
           </button>
         </Link>
