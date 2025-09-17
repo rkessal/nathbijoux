@@ -21,8 +21,8 @@ const parsingVariant = (variants: SanityVariant[], lang = "en_us"): Variant[] =>
   return !_.isEmpty(variants)
     ? variants.map((variant) => {
         const localization = {
-          name: variant?.name?.[lang] || "",
-          size: { name: variant?.size?.name?.[lang] || "" }
+          name: variant?.name?.["en_us"] || "",
+          size: { name: variant?.size?.name?.["en_us"] || "" }
         };
         return { ...variant, ...localization };
       })
@@ -36,18 +36,18 @@ const parsingProduct = (
   return _.isArray(products)
     ? products.map((product) => {
         const localization = {
-          name: product?.name[lang],
+          name: product?.name["en_us"] ?? null,
           slug: product?.slug["en_us"].current,
-          description: product?.description[lang],
+          description: product.description ? product?.description["en_us"] : null as any,
           variants: parsingVariant(product?.variants, lang) as Variant[]
         };
         return { ...product, ...localization };
       })
     : {
         ...products,
-        name: products?.name[lang],
+        name: products?.name["en_us"] ?? null,
         slug: products?.slug["en_us"].current,
-        description: products?.description[lang],
+        description: products?.description ? products?.description["en_us"] : null as any,
         variants: parsingVariant(products?.variants, lang) as Variant[]
       };
 };
@@ -56,7 +56,7 @@ const parsingTaxon = (taxons: SanityTaxon[], lang = "en_us"): Taxon[] => {
   return taxons.map((taxon) => {
     const localization = {
       slug: taxon?.slug[lang]?.current,
-      name: taxon?.name[lang],
+      name: taxon?.name[lang] ?? null,
       label: taxon?.label[lang],
       products: taxon?.products ? (parsingProduct(taxon.products, lang) as Product[]) : []
     };
