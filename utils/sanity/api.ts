@@ -47,7 +47,7 @@ const parsingProduct = (
         name: products?.name["en_us"] ?? null,
         slug: products?.slug["en_us"].current,
         description: products?.description ? products?.description["en_us"] : null as any,
-        variants: parsingVariant(products?.variants, "en-us") as Variant[]
+        variants: parsingVariant(products?.variants) as Variant[]
       };
 };
 
@@ -57,7 +57,7 @@ const parsingTaxon = (taxons: SanityTaxon[], lang = "en_us"): Taxon[] => {
       slug: taxon?.slug[lang]?.current,
       name: taxon?.name[lang] ?? null,
       label: taxon?.label[lang],
-      products: taxon?.products ? (parsingProduct(taxon.products, lang) as Product[]) : []
+      products: taxon?.products ? (parsingProduct(taxon.products) as Product[]) : []
     };
     return { ...taxon, ...localization };
   });
