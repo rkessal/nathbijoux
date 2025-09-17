@@ -17,7 +17,7 @@ const client = createClient({
   useCdn: process.env.NODE_ENV === "production" // `false` to ensure fresh data
 });
 
-const parsingVariant = (variants: SanityVariant[], lang = "en_us"): Variant[] => {
+const parsingVariant = (variants: SanityVariant[]): Variant[] => {
   return !_.isEmpty(variants)
     ? variants.map((variant) => {
         const localization = {
@@ -31,15 +31,14 @@ const parsingVariant = (variants: SanityVariant[], lang = "en_us"): Variant[] =>
 
 const parsingProduct = (
   products: SanityProduct[] | SanityProduct,
-  lang = "en_us"
-): Product[] | Product => {
+  ): Product[] | Product => {
   return _.isArray(products)
     ? products.map((product) => {
         const localization = {
           name: product?.name["en_us"] ?? null,
           slug: product?.slug["en_us"].current,
           description: product.description ? product?.description["en_us"] : null as any,
-          variants: parsingVariant(product?.variants, lang) as Variant[]
+          variants: parsingVariant(product?.variants) as Variant[]
         };
         return { ...product, ...localization };
       })
@@ -48,7 +47,7 @@ const parsingProduct = (
         name: products?.name["en_us"] ?? null,
         slug: products?.slug["en_us"].current,
         description: products?.description ? products?.description["en_us"] : null as any,
-        variants: parsingVariant(products?.variants, lang) as Variant[]
+        variants: parsingVariant(products?.variants, "en-us") as Variant[]
       };
 };
 
