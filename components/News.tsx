@@ -25,13 +25,17 @@ const News = ({ collection, countryCode, marketId }: Props) => {
   });
 
   // Extract SKUs from products
-  const skus = useMemo(() =>
-    products.map(product => product.variants[0].code).filter(Boolean),
+  const skus = useMemo(
+    () => products.map((product) => product.variants[0].code).filter(Boolean),
     [products]
   );
 
   // Get prices for all products
-  const { prices, loading: pricesLoading, error: pricesError } = useGetPrices({
+  const {
+    prices,
+    loading: pricesLoading,
+    error: pricesError
+  } = useGetPrices({
     skus,
     token,
     enabled: !!token && skus.length > 0
@@ -48,7 +52,7 @@ const News = ({ collection, countryCode, marketId }: Props) => {
       )}
 
       <ul className="flex flex-col w-full md:flex-row md:space-x-4">
-        {products.map(product => {
+        {products.map((product) => {
           const productSku = product.variants[0].code;
           const productSlug = product.slug;
           const productPrices = prices[productSku] || [];
@@ -56,31 +60,27 @@ const News = ({ collection, countryCode, marketId }: Props) => {
 
           return (
             <li key={product.slug} className="space-y-2 ">
-
               <Link
                 href={"/[countryCode]/[lang]/[productName]"}
                 as={`/${countryCode}/${lang}/${productSlug}`}
                 passHref
               >
-                  <Image
-                    src={product.images[0].url}
-                    height={750}
-                    width={550}
-                    className="flex-1 flex-shrink"
-                    alt="Product Image"
-                  />
-                  <div className="flex justify-between mt-4 txt-compact-medium">
-                    <div className="text-ui-fg-subtle" data-testid="product-title">
-                      {product.name}
-                    </div>
-                    <div className="flex items-center gap-x-2">
-                      <PreviewPrice
-                        price={mainPrice}
-                        loading={pricesLoading && !mainPrice}
-                      />
-                    </div>
+                <Image
+                  src={product.images[0].url}
+                  height={750}
+                  width={550}
+                  className="flex-1 flex-shrink"
+                  alt="Product Image"
+                />
+                <div className="flex justify-between mt-4 txt-compact-medium">
+                  <div className="text-ui-fg-subtle" data-testid="product-title">
+                    {product.name}
                   </div>
-</Link>
+                  <div className="flex items-center gap-x-2">
+                    <PreviewPrice price={mainPrice} loading={pricesLoading && !mainPrice} />
+                  </div>
+                </div>
+              </Link>
             </li>
           );
         })}
@@ -100,9 +100,7 @@ const PreviewPrice = ({ price, loading }: { price: any; loading?: boolean }) => 
 
   return (
     <div className="flex items-center gap-x-2">
-      <span>
-        {price.formatted_amount}
-      </span>
+      <span>{price.formatted_amount}</span>
       {price.compare_at_formatted_amount && (
         <span className="text-sm line-through text-ui-fg-muted">
           {price.compare_at_formatted_amount}

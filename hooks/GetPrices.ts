@@ -10,11 +10,7 @@ type PriceData = {
 };
 
 type UseGetPrices = {
-  (args: {
-    skus: string[];
-    token: string;
-    enabled?: boolean;
-  }): {
+  (args: { skus: string[]; token: string; enabled?: boolean }): {
     prices: PriceData;
     loading: boolean;
     error: string | null;
@@ -30,40 +26,40 @@ export const useGetPrices: UseGetPrices = ({ skus, token, enabled = true }) => {
   useEffect(() => {
     if (!enabled || !token || !skus.length || !slug) return;
 
-const fetchPrices = async () => {
-  setLoading(true);
-  setError(null);
+    const fetchPrices = async () => {
+      setLoading(true);
+      setError(null);
 
-  try {
-    const cl = CommerceLayer({
-      organization: slug,
-      accessToken: token
-    });
+      try {
+        const cl = CommerceLayer({
+          organization: slug,
+          accessToken: token
+        });
 
-    const pricesList = await cl.prices.list({
-      filters: {
-        sku_code_in: skus.join(",")
+        const pricesList = await cl.prices.list({
+          filters: {
+            sku_code_in: skus.join(",")
+          }
+        });
+
+        const pricesData: PriceData = {};
+        skus.forEach((sku) => {
+          const skuPrices = pricesList.filter((price) => price.sku_code === sku);
+          pricesData[sku] = skuPrices;
+
+          if (skuPrices.length === 0) {
+            console.warn(`No prices found for SKU: ${sku}`);
+          }
+        });
+
+        setPrices(pricesData);
+      } catch (err) {
+        console.error("❌ Error fetching prices:", err);
+        setError(err instanceof Error ? err.message : "Failed to fetch prices");
+      } finally {
+        setLoading(false);
       }
-    });
-
-    const pricesData: PriceData = {};
-    skus.forEach(sku => {
-      const skuPrices = pricesList.filter(price => price.sku_code === sku);
-      pricesData[sku] = skuPrices;
-
-      if (skuPrices.length === 0) {
-        console.warn(`No prices found for SKU: ${sku}`);
-      }
-    });
-
-    setPrices(pricesData);
-  } catch (err) {
-    console.error("❌ Error fetching prices:", err);
-    setError(err instanceof Error ? err.message : "Failed to fetch prices");
-  } finally {
-    setLoading(false);
-  }
-};
+    };
 
     fetchPrices();
   }, [skus, token, enabled]);

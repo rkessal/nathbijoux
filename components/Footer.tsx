@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import locale from "@locale/index";
 import LanguageSelector from "@components/LanguageSelector";
 import CountrySelector from "@components/CountrySelector";
 import { Country } from "@typings/models";
+import sanityApi from "@utils/sanity/api";
 
 type Props = {
   lang: string;
@@ -11,13 +12,19 @@ type Props = {
 };
 
 const Footer: React.FC<Props> = ({ lang, countries, buildLanguages }) => {
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     await sanityApi.mapVariantsToProducts();
+  //   }
+  //   fetchData();
+  // }, []);
   return (
-    <footer className="bg-gray-50 mt-24 md:mt-12" aria-labelledby="footer-heading">
+    <footer className="mt-24 bg-gray-50 md:mt-12" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
       <hr />
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-4 md:px-8">
+      <div className="px-6 pt-4 pb-8 mx-auto max-w-7xl md:px-8">
         <div className="mt-16 lg:flex lg:items-center lg:justify-between">
           {" "}
           <div className="md:flex md:items-center md:space-x-5">
@@ -34,7 +41,7 @@ const Footer: React.FC<Props> = ({ lang, countries, buildLanguages }) => {
             </p>
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
+        <div className="pt-8 mt-16 border-t border-gray-900/10 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
           <div>
             <h3 className="text-sm font-semibold leading-6 text-gray-900">
               {locale[lang].subscribeTitle}
@@ -58,7 +65,7 @@ const Footer: React.FC<Props> = ({ lang, countries, buildLanguages }) => {
               {/* Handle the subcribe form yourself */}
               <button
                 type="submit"
-                className="flex w-full items-center justify-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex items-center justify-center w-full px-3 py-2 text-sm font-semibold text-white bg-indigo-500 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 {locale[lang].subscribe}
               </button>
