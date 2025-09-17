@@ -8,7 +8,7 @@ import { useGetToken } from "@hooks/GetToken";
 import locale from "@locale/index";
 import Page from "@components/Page";
 import { Product, Country } from "@typings/models";
-import { parseImg, parseLanguageCode } from "@utils/parser";
+import { parseLanguageCode } from "@utils/parser";
 import sanityApi from "@utils/sanity/api";
 
 type Props = {
