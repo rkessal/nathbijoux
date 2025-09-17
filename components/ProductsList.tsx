@@ -16,7 +16,7 @@ const ProductsList = ({ products }: Props) => {
   } = useRouter();
   return (
     <div className="mt-12 sm:ml-10 lg:col-span-2">
-      <ul className="md:pt-7 space-y-12 sm:grid sm:grid-cols-1 md:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:gap-x-8">
+      <ul className="space-y-12 md:pt-7 sm:grid sm:grid-cols-1 md:grid-cols-3 sm:gap-x-6 sm:gap-y-12 sm:space-y-0 lg:gap-x-8">
         {products.map(({ images, name, variants, slug }, key: number) => {
           const img = _.first(images)?.url;
           const code = _.first(variants)?.code;
@@ -27,8 +27,7 @@ const ProductsList = ({ products }: Props) => {
                 as={`/${countryCode}/${lang}/${slug}`}
                 passHref
               >
-                <div className="flex flex-col h-full border-2 rounded-lg p-5 md:p-3 hover:shadow-2xl">
-                  <div className="aspect-w-3 aspect-h-2 mb-5">
+                <div className="flex flex-col h-full rounded-lg md:p-3">
                     <Image
                       className="object-contain"
                       src={`${img}`}
@@ -36,14 +35,13 @@ const ProductsList = ({ products }: Props) => {
                       width={200}
                       height={50}
                     />
-                  </div>
-                  <h3 className="text-base leading-6 font-medium space-y-1 h-full">{name}</h3>
-                  <div className="justify-self-end mt-5">
-                    <ul className="flex justify-between space-x-1 items-center">
+                  <h3 className="h-full space-y-1 text-base font-medium leading-6">{name}</h3>
+                  <div className="mt-5 justify-self-end">
+                    <ul className="flex items-center justify-between space-x-1">
                       <li>
                         <PricesContainer skuCode={code}>
                           <Price
-                            className="text-indigo-600 mr-1 text-base font-bold md:text-sm"
+                            className="mr-1 text-base font-bold text-indigo-600 md:text-sm"
                             compareClassName="text-gray-500 line-through text-sm md:text-xs"
                           />
                         </PricesContainer>

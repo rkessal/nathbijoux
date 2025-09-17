@@ -13,12 +13,12 @@ const IndexPage: NextPage<Props> = ({ countries }) => {
   return (
     <>
       <SEOHead />
-      <div className="m-16 mx-auto container">
+      <div className="container m-16 mx-auto">
         <Countries items={countries} />
       </div>
       <hr />
       <Image
-        className="h-8 mx-auto m-12 md:mt-16"
+        className="h-8 m-12 mx-auto md:mt-16"
         src="//data.commercelayer.app/assets/logos/full-logo/black/commercelayer_full_logo_black.svg"
         alt="Commerce Layer Logo"
         loading="eager"

@@ -59,7 +59,7 @@ const ProductPage: React.FC<Props> = ({ lang, country, countries, buildLanguages
       countryCode={countryCode}
       countries={countries}
     >
-      <div className="container mx-auto max-w-screen-lg px-5 lg:px-0 text-sm text-gray-700">
+      <div className="container max-w-screen-lg px-5 mx-auto text-sm text-gray-700 lg:px-0">
         <Link
           href={{
             pathname: "/[countryCode]/[lang]",
@@ -72,38 +72,42 @@ const ProductPage: React.FC<Props> = ({ lang, country, countries, buildLanguages
           <Image
             title="back"
             src="/back.svg"
-            className="w-5 h-5 inline-block"
+            className="inline-block w-5 h-5"
             alt="Back to previous page SVG icon"
             width={20}
             height={20}
           />
-          <p className="ml-2 hover:underline inline-block align-middle">
+          <p className="inline-block ml-2 align-middle hover:underline">
             {locale[lang].backToAllProducts}
           </p>
         </Link>
       </div>
-      <div className="container mx-auto max-w-screen-lg py-10 lg:py-16 flex flex-row">
-        <div className="flex flex-wrap sm:flex-nowrap sm:space-x-5 px-5 lg:px-0">
-          <div className="w-full pb-5 lg:pb-0">
+      <div className="container flex flex-row max-w-screen-lg py-10 mx-auto lg:py-16">
+        <div className="flex flex-wrap items-start px-5 sm:flex-nowrap sm:space-x-5 lg:px-0">
+          <div className="flex flex-col w-full pb-5 lg:pb-0">
+            { product.images && product.images.map(img => (
             <Image
+            key={img.url}
               alt={product.name}
-              className="w-full object-center rounded border border-gray-200"
-              src={imgUrl}
+              className="object-center w-full"
+              src={img.url}
               width={500}
               height={500}
             />
+            )
+            )}
           </div>
-          <div className="w-full">
-            <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND</h2>
-            <p className="text-gray-900 text-3xl title-font font-medium my-3">{product.name}</p>
-            <p className="text-gray-600 text-xl title-font font-medium my-3">{selectedVariant}</p>
+          <div className="sticky w-full top-10">
+            <h2 className="text-sm tracking-widest text-gray-500 title-font">BRAND</h2>
+            <p className="my-3 text-3xl font-medium text-gray-900 title-font">{product.name}</p>
+            <p className="my-3 text-xl font-medium text-gray-600 title-font">{selectedVariant}</p>
             <p className="leading-relaxed">{product.description}</p>
-            <div className="flex items-center border-b-2 border-gray-200 py-5">
+            <div className="flex items-center py-5 border-b-2 border-gray-200">
               <div className="flex items-center">
                 <div className="relative" data-children-count="1">
                   <select
                     placeholder={locale[lang].selectSize as string}
-                    className="rounded border appearance-none border-gray-400 py-2 focus:outline-none focus:border-blue-500 text-base pl-3 pr-10"
+                    className="py-2 pl-3 pr-10 text-base border border-gray-400 rounded appearance-none focus:outline-none focus:border-blue-500"
                     value={selectedVariant}
                     onChange={(e) => setSelectedVariant(e.target.value)}
                   >
@@ -113,7 +117,7 @@ const ProductPage: React.FC<Props> = ({ lang, country, countries, buildLanguages
                       </option>
                     ))}
                   </select>
-                  <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
+                  <span className="absolute top-0 right-0 flex items-center justify-center w-10 h-full text-center text-gray-600 pointer-events-none">
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -129,12 +133,12 @@ const ProductPage: React.FC<Props> = ({ lang, country, countries, buildLanguages
                 </div>
               </div>
             </div>
-            <div className="flex justify-between items-center pt-5">
-              <span className="title-font font-medium text-2xl text-gray-900">
+            <div className="flex items-center justify-between pt-5">
+              <span className="text-2xl font-medium text-gray-900 title-font">
                 <PricesContainer>
                   <Price
                     skuCode={selectedVariant}
-                    className="text-indigo-600 mr-1"
+                    className="mr-1 text-indigo-600"
                     compareClassName="text-gray-500 line-through text-lg"
                   />
                 </PricesContainer>
@@ -142,7 +146,7 @@ const ProductPage: React.FC<Props> = ({ lang, country, countries, buildLanguages
               <AddToCartButton
                 skuCode={selectedVariant}
                 label={locale[lang].addToCart as string}
-                className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm md:text-base font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-gray-900 border border-gray-300 rounded-md shadow-sm md:text-base hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
               />
             </div>
           </div>
